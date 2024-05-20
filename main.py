@@ -17,8 +17,8 @@ from kopeechka import MailActivations #type: ignore
 
 logging.disable(sys.maxsize)
 
-_hcop_api = 'hcop'
-kopeechka = "kopeechka"
+_hcop_api = 'hcopapi'
+kopeechka = "kopeechka api"
 
 
 class Solver:
@@ -89,7 +89,7 @@ class EpicGenerator:
             'origin': 'https://www.epicgames.com',
             'priority': 'u=1, i',
             'referer': 'https://www.epicgames.com/',
-            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="120", "Not-A.Brand";v="99"' #ok yoabi nigga u are the best coder in the world,
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'empty',
@@ -207,7 +207,7 @@ class EpicGenerator:
 
         loguru.logger.info(f"Got hcaptcha rqdata: {resp.json()['h_captcha']['data'][:50]}..")
         return {"rqdata":resp.json()["h_captcha"]["data"] ,"site_key":response['session']['plan']['h_captcha']['site_key']}
-    def enter_mail(self, captcha_token: str, captcha_data_key: str, response: dict) ->None: # email is email, captcha_solution is hcaptcha solution
+    def enter_mail(self, captcha_token: str, captcha_data_key: str, response: dict) ->bool: # email is email, captcha_solution is hcaptcha solution
         captcha_to_send = {
            "session_wrapper":{
               "session":{
@@ -260,7 +260,14 @@ class EpicGenerator:
                 loguru.logger.info("Error, while entering email: ", e)
                 continue
 
-        loguru.logger.info(f"Entered email: {self.email}, response of request: {response.status_code}, {response.text}")
+        if response.status_code == 204:
+            loguru.logger.info(f"Entered email: {self.email}, response of request: {response.status_code}, {response.text}")
+            return True
+        else:
+            loguru.logger.error(
+                f"Entered email: {self.email}, response of request: {response.status_code}, {response.text}")
+            return False
+
     def complete_register(self):
         json_data = {
             'flow_id': 'registration_prod',
@@ -498,10 +505,11 @@ def handle_threads():
     captcha_token, captcha_data_key = gen.solve_hcaptcha(rqdata)
 
 
-    gen.enter_mail(captcha_token, captcha_data_key, response)
+    x = gen.enter_mail(captcha_token, captcha_data_key, response)
+    if x:
 
-    gen.complete_register()
-    gen.get_that_code_nigga()
+        gen.complete_register()
+        gen.get_that_code_nigga()
 
 def loop():
     #keep creating accs
