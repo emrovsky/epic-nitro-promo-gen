@@ -89,7 +89,7 @@ class EpicGenerator:
             'origin': 'https://www.epicgames.com',
             'priority': 'u=1, i',
             'referer': 'https://www.epicgames.com/',
-            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="120", "Not-A.Brand";v="99"' #ok yoabi nigga u are the best coder in the world,
+            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="120", "Not-A.Brand";v="99"', #ok yoabi nigga u are the best coder in the world
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'empty',
