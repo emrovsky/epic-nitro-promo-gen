@@ -3,6 +3,7 @@
 This project is a powerful tool for generating Discord invites and Epic Games promo codes seamlessly. To get started, make sure you have Python, Node.js, your Kopeechka API key, and your Hcoptcha.online API key ready.
 
 kopeechka api = https://kopeechka.store/ (make account and topup balance)
+
 hcoptcha api = https://hcoptcha.online/ (make account and topup balance) 
 
 
