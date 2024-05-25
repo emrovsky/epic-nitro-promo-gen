@@ -17,7 +17,7 @@ Run main.py to activate the generator.
 
 
 #  Contact Us:
-Join https://discord.gg/switchuwu or you can message emrovsky or switch1337_ on Discord.
+Join https://discord.gg/switchuwu or you can message emrovsky or switch3301 on Discord.
 
 
 # Showcase:
